@@ -21,7 +21,7 @@ BuildRequires:	clang >= 3.2
 BuildRequires:	llvm-devel >= 3.2
 BuildRequires:	python
 BuildRequires:	rpmbuild(macros) >= 1.446
-Requires:	llvm >= 3.2
+Requires:	llvm-libs >= 3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
