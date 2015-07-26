@@ -5,17 +5,15 @@
 Summary:	OpenCL C programming language library implementation
 Summary(pl.UTF-8):	Implementacja biblioteki języka programowania OpenCL C
 Name:		llvm-libclc
-Version:	0.0.1
-%define	snap	20130101
+Version:	0.1.0
+%define	snap	20150710
 Release:	0.%{snap}.1
 License:	BSD-like or MIT
 Group:		Libraries
 # git clone http://llvm.org/git/libclc.git
 Source0:	libclc.tar.xz
-# Source0-md5:	19eaa8751e6fcbf198ffdb07ebafe214
-Patch0:		libclc-better-FHS-compliance.patch
-Patch1:		libclc-support-for-overriding.patch
-Patch2:		libclc-r600-support.patch
+# Source0-md5:	223fb33e939258ff69462d37cd7c8897
+Patch0:		build.patch
 URL:		http://libclc.llvm.org/
 BuildRequires:	clang >= 3.2
 BuildRequires:	llvm-devel >= 3.2
@@ -65,8 +63,6 @@ Clang.
 %prep
 %setup -q -n libclc
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 ./configure.py \
