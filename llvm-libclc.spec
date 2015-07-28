@@ -22,6 +22,10 @@ BuildRequires:	rpmbuild(macros) >= 1.446
 Requires:	llvm-libs >= 3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define	filterout_c	-fvar-tracking-assignments
+%define	filterout_cxx	-fvar-tracking-assignments
+%define	filterout_ccpp	-fvar-tracking-assignments
+
 %description
 libclc is an open source, BSD licensed implementation of the library
 requirements of the OpenCL C programming language, as specified by the
