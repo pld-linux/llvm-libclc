@@ -10,7 +10,7 @@ Version:	0.2.0
 Release:	0.%{snap}.1
 License:	BSD-like or MIT
 Group:		Libraries
-# git clone http://llvm.org/git/libclc.git
+# https://github.com/llvm/llvm-project/tree/master/libclc
 Source0:	libclc-%{snap}.tar.xz
 # Source0-md5:	ea25d81625b12e7659881509aa7546cb
 Patch0:		build.patch
