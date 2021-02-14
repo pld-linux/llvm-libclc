@@ -1,21 +1,20 @@
-#
-# Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-#
 Summary:	OpenCL C programming language library implementation
 Summary(pl.UTF-8):	Implementacja biblioteki języka programowania OpenCL C
 Name:		llvm-libclc
 Version:	0.2.0
-%define	snap	20171128
-Release:	0.%{snap}.1
+%define	llvm_ver	11.0.1
+%define	llvm_dver	%(echo %{llvm_ver} | tr . _)
+%define	rel		1
+Release:	1.llvm%{llvm_dver}.%{rel}
 License:	BSD-like or MIT
 Group:		Libraries
-# https://github.com/llvm/llvm-project/tree/master/libclc
-Source0:	libclc-%{snap}.tar.xz
-# Source0-md5:	ea25d81625b12e7659881509aa7546cb
+#Source0Download: https://github.com/llvm/llvm-project/releases/
+Source0:	https://github.com/llvm/llvm-project/releases/download/llvmorg-%{llvm_ver}/libclc-%{llvm_ver}.src.tar.xz
+# Source0-md5:	a441404cab86a1dd92be69ac8faa1dc7
 Patch0:		build.patch
-URL:		http://libclc.llvm.org/
+URL:		https://libclc.llvm.org/
 BuildRequires:	clang >= 3.9
+BuildRequires:	cmake >= 3.9.2
 BuildRequires:	llvm-devel >= 3.9
 BuildRequires:	python >= 1:2.7
 BuildRequires:	rpmbuild(macros) >= 1.446
@@ -61,23 +60,23 @@ libclc jest przeznaczona do używania z frontendem OpenCL kompilatora
 Clang.
 
 %prep
-%setup -q -n libclc
+%setup -q -n libclc-%{llvm_ver}.src
 %patch0 -p1
 
 %build
-./configure.py \
-	--prefix=%{_prefix} \
-	--libexecdir=%{_datadir}/clc \
-	--pkgconfigdir=%{_npkgconfigdir} \
-	--with-llvm-config=/usr/bin/llvm-config
+install -d build
+cd build
+# .pc file generation needs CMAKE_INSTALL_{DATADIR,INCLUDEDIR} relative to CMAKE_INSTALL_PREFIX
+%cmake .. \
+	-DCMAKE_INSTALL_DATADIR=share \
+	-DCMAKE_INSTALL_INCLUDEDIR=include
 
-%{__make} \
-	VERBOSE=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
