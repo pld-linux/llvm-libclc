@@ -18,6 +18,7 @@ BuildRequires:	llvm-devel >= 3.9
 BuildRequires:	python >= 1:2.7
 BuildRequires:	rpmbuild(macros) >= 1.446
 Requires:	llvm-libs >= 3.9
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
