@@ -4,7 +4,7 @@ Name:		llvm-libclc
 Version:	0.2.0
 %define	llvm_ver	11.0.1
 %define	llvm_dver	%(echo %{llvm_ver} | tr . _)
-%define	rel		1
+%define	rel		2
 Release:	1.llvm%{llvm_dver}.%{rel}
 License:	BSD-like or MIT
 Group:		Libraries
