@@ -11,7 +11,6 @@ Group:		Libraries
 #Source0Download: https://github.com/llvm/llvm-project/releases/
 Source0:	https://github.com/llvm/llvm-project/releases/download/llvmorg-%{llvm_ver}/libclc-%{llvm_ver}.src.tar.xz
 # Source0-md5:	a441404cab86a1dd92be69ac8faa1dc7
-Patch0:		build.patch
 URL:		https://libclc.llvm.org/
 BuildRequires:	clang >= 3.9
 BuildRequires:	cmake >= 3.9.2
@@ -61,7 +60,6 @@ Clang.
 
 %prep
 %setup -q -n libclc-%{llvm_ver}.src
-%patch0 -p1
 
 %build
 install -d build
