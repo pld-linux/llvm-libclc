@@ -2,7 +2,7 @@ Summary:	OpenCL C programming language library implementation
 Summary(pl.UTF-8):	Implementacja biblioteki języka programowania OpenCL C
 Name:		llvm-libclc
 Version:	0.2.0
-%define	llvm_ver	11.0.1
+%define	llvm_ver	17.0.4
 %define	llvm_dver	%(echo %{llvm_ver} | tr . _)
 %define	rel		2
 Release:	1.llvm%{llvm_dver}.%{rel}
@@ -10,12 +10,12 @@ License:	BSD-like or MIT
 Group:		Libraries
 #Source0Download: https://github.com/llvm/llvm-project/releases/
 Source0:	https://github.com/llvm/llvm-project/releases/download/llvmorg-%{llvm_ver}/libclc-%{llvm_ver}.src.tar.xz
-# Source0-md5:	a441404cab86a1dd92be69ac8faa1dc7
+# Source0-md5:	8848371d2951d20f886529e084972a55
 URL:		https://libclc.llvm.org/
 BuildRequires:	clang >= 3.9
 BuildRequires:	cmake >= 3.9.2
 BuildRequires:	llvm-devel >= 3.9
-BuildRequires:	python >= 1:2.7
+BuildRequires:	python3
 BuildRequires:	rpmbuild(macros) >= 1.446
 Requires:	llvm-libs >= 3.9
 BuildArch:	noarch
