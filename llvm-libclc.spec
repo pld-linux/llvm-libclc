@@ -13,7 +13,7 @@ Source0:	https://github.com/llvm/llvm-project/releases/download/llvmorg-%{llvm_v
 # Source0-md5:	8848371d2951d20f886529e084972a55
 URL:		https://libclc.llvm.org/
 BuildRequires:	clang >= 3.9
-BuildRequires:	cmake >= 3.9.2
+BuildRequires:	cmake >= 3.20.0
 BuildRequires:	llvm-devel >= 3.9
 BuildRequires:	python3
 BuildRequires:	rpmbuild(macros) >= 1.446
@@ -63,14 +63,12 @@ Clang.
 %setup -q -n libclc-%{llvm_ver}.src
 
 %build
-install -d build
-cd build
 # .pc file generation needs CMAKE_INSTALL_{DATADIR,INCLUDEDIR} relative to CMAKE_INSTALL_PREFIX
-%cmake .. \
+%cmake -B build \
 	-DCMAKE_INSTALL_DATADIR=share \
 	-DCMAKE_INSTALL_INCLUDEDIR=include
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
